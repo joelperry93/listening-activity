@@ -8,7 +8,7 @@ if ($config['display_errors']) {
 
 require 'vendor/autoload.php';
 
-$app = new Slim\Sim;
+$app = new Slim\Slim;
 
 require 'routes.php';
 

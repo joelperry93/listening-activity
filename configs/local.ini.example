@@ -1,0 +1,5 @@
+[global]
+display_errors = true
+
+[last-fm]
+api_key = YOUR_API_KEY

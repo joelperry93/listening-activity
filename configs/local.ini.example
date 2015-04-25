@@ -2,4 +2,5 @@
 display_errors = true
 
 [last-fm]
-api_key = YOUR_API_KEY
+user_name = YOUR_USER_NAME
+api_key   = YOUR_API_KEY

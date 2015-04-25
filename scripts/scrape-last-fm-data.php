@@ -1,8 +1,17 @@
-<?php
-require 'lib/LastFmResource.php';
+<?php 
+namespace App\Scripts;
 
-$config = parse_ini_file('../configs/local.ini');;
+require '../lib/LastFmResource.php';
+require '../lib/ListeningActivityDAO.php';
 
-echo (new LastFmResource)->getWeeklyArtistChart($config);
+use App\DAO\ListeningActivityDAO;
+use App\Resources\LastFmResource;
 
-echo "\n";
+$config = parse_ini_file('../configs/local.ini');
+
+$lastFmResource = new LastFmResource($config);
+$dao            = new ListeningActivityDAO;
+
+$artists = $lastFmResource->getWeeklyArtistChart();
+
+var_dump($dao->getArtists()->fetchArray());

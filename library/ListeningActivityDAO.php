@@ -25,4 +25,5 @@ class ListeningActivityDAO extends SQLite3
 			FROM artist
 		')->fetchArray();
 	}
+
 }

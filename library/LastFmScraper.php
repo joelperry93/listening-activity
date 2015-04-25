@@ -1,18 +1,20 @@
 <?php
-namespace App\Lib;
+namespace App\Scraper;
 
 use App\DAO\ListeningActivityDAO;
-use App\Resources\LastFmResource;
+use App\Resource\LastFmResource;
 
-class LastFmScraper {
-        
+class LastFmScraper 
+{ 
     protected $config;
 
-    public function __construct($config) {
+    public function __construct($config) 
+    {
         $this->config = $config;
     }
 
-    public function scrape() {
+    public function scrape() 
+    {
         $lastFmResource = new LastFmResource($this->config['user_name'], $this->config['api_key']);
         $dao            = new ListeningActivityDAO;
 
@@ -20,4 +22,5 @@ class LastFmScraper {
 
         var_dump($dao->getArtists());
     }
+
 }

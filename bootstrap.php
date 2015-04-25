@@ -7,8 +7,9 @@ if ($config['display_errors']) {
 }
 
 define('ROOT_PATH', dirname(__FILE__).'/');
+define('LIBRARY_PATH', ROOT_PATH.'library/');
 
 require 'vendor/autoload.php';
-require 'lib/LastFmResource.php';
-require 'lib/ListeningActivityDAO.php';
-require 'lib/LastFmScraper.php';
+require LIBRARY_PATH.'LastFmResource.php';
+require LIBRARY_PATH.'ListeningActivityDAO.php';
+require LIBRARY_PATH.'LastFmScraper.php';

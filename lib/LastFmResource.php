@@ -3,15 +3,17 @@ namespace App\Resources;
 
 class LastFmResource {
 
-    protected $config;
+    protected $username;
+    protected $apiKey;
 
-    public function __construct($config) {
-        $this->config = $config;
+    public function __construct($username, $apiKey) {
+        $this->username = $username;
+        $this->apiKey   = $apiKey;
     }
 
     public function getWeeklyArtistChart() {
         return json_decode(file_get_contents(
-            "http://ws.audioscrobbler.com/2.0/?method=user.getweeklyartistchart&user={$this->config['user_name']}&api_key={$this->config['api_key']}&format=json"
+            "http://ws.audioscrobbler.com/2.0/?method=user.getweeklyartistchart&user={$this->username}&api_key={$this->apiKey}&format=json"
         ))->weeklyartistchart->artist;
     }
 }

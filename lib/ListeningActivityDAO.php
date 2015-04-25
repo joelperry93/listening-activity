@@ -7,7 +7,7 @@ class ListeningActivityDAO extends SQLite3
 {
 	public function __construct() 
 	{
-		$this->open('storage.db');
+		$this->open(ROOT_PATH.'storage/storage.db');
 	}
 
 	public function addVerificationKey($key)
@@ -23,6 +23,6 @@ class ListeningActivityDAO extends SQLite3
 		return $this->query('
 			SELECT * 
 			FROM artist
-		');
+		')->fetchArray();
 	}
 }

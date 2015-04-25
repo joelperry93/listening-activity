@@ -7,7 +7,7 @@ class ListeningActivityDAO extends SQLite3
 {
 	public function __construct() 
 	{
-		$this->open(ROOT_PATH.'storage/storage.db');
+		$this->open(DATABASE_FILE);
 	}
 
 	public function addVerificationKey($key)

@@ -8,6 +8,7 @@ if ($config['display_errors']) {
 
 define('ROOT_PATH', dirname(__FILE__).'/');
 define('LIBRARY_PATH', ROOT_PATH.'library/');
+define('DATABASE_FILE', ROOT_PATH.'storage.db');
 
 require 'vendor/autoload.php';
 require LIBRARY_PATH.'LastFmResource.php';

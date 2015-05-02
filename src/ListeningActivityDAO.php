@@ -25,4 +25,58 @@ class ListeningActivityDAO extends SQLite3
 		return $this->query("SELECT * FROM weekly_listening_activity WHERE date(date) = date('now')")->fetchArray();
 	}
 
+    public function getAll()
+    {
+        $data    = [];
+        $results = $this->query('SELECT a.name, wla.plays, wla.date
+                            FROM weekly_listening_activity wla
+                            JOIN artist a on wla.artist_id = a.id');
+
+        while ($row = $results->fetchArray())
+        {
+            $data[] = ['name' => $row['name'], 'plays' => $row['plays']];
+        }
+
+        return $data;
+    }
+
+    public function getByDate($date)
+    {
+        $data = [];
+        $statement = $this->prepare(
+            'SELECT a.name, wla.plays, wla.date
+            FROM weekly_listening_activity wla
+            JOIN artist a on wla.artist_id = a.id
+            WHERE wla.date = :date');
+        $statement->bindValue(':date', $date, SQLITE3_BLOB);
+
+        $results = $statement->execute();
+
+        while ($row = $results->fetchArray())
+        {
+            $data[] = ['name' => $row['name'], 'plays' => $row['plays']];
+        }
+
+        return $data;
+    }
+
+    public function getDates()
+    {
+        $results = $this->query('SELECT DISTINCT date FROM weekly_listening_activity');
+        $dates   = [];
+
+        while ($row = $results->fetchArray())
+        {
+            $dates[] = $row['date'];
+        }
+
+        return $dates;
+    }
+
 }
+
+
+
+
+
+

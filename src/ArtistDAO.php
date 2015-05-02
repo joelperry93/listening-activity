@@ -26,14 +26,19 @@ class ArtistDAO extends SQLite3
 
     public function add(Artist $artist) 
     {
-        $this->query("INSERT INTO artist (name) VALUES ('{$artist->name()}')");
-        
+        $statement = $this->prepare("INSERT INTO artist (name) VALUES (:name)");
+        $statement->bindValue(':name', $artist->name(), SQLITE3_TEXT);
+        $statement->execute();
+
         return $this->getByName($artist->name());
     }
 
     public function getByName($name)
     {
-        $row = $this->query("SELECT * FROM artist WHERE name = '{$name}'")->fetchArray();
+        $statement = $this->prepare("SELECT * FROM artist WHERE name = :name");
+        $statement->bindValue(':name', $name, SQLITE3_TEXT);
+        $row = $statement->execute()->fetchArray();
+
         return $row ? $this->makeArtistWithRow($row) : false;
     }
 

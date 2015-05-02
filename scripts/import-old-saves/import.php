@@ -1,6 +1,11 @@
 <?php 
 namespace App\Scripts;
 
+use App\DAO\ArtistDAO;
+use App\DAO\ListeningActivityDAO;
+use App\Model\Artist;
+
+require dirname(__FILE__).'/../../bootstrap.php';
 define('SAVES_DIR', dirname(__FILE__).'/saves');
 
 
@@ -33,4 +38,27 @@ function loadSaves()
     return $saves;
 }
 
-var_dump(loadSaves());
+$artistDao = new ArtistDAO;
+$listeningActivityDao = new ListeningActivityDAO;
+
+foreach (loadSaves() as $date => $bands) 
+{   
+    foreach ($bands as $band)
+    {
+        if ( ! $artist = $artistDao->getByName($band->name))
+        {
+            $artist = $artistDao->add(new Artist($band->name));
+        }
+
+        $listeningActivityDao->add($artist, $band->plays, new \DateTime($date));
+    }
+}
+
+
+
+
+
+
+
+
+

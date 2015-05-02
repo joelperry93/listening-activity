@@ -2,7 +2,11 @@
 $activityDao = new App\DAO\ListeningActivityDAO;
 
 function sendJSON($data) {
-    print json_encode($data);
+    if (isset($_GET['callback'])) {
+        print $_GET['callback'].'('.json_encode($data).');';
+    } else {
+        print json_encode($data);
+    }
 }
 
 

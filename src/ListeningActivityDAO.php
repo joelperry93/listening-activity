@@ -51,7 +51,7 @@ class ListeningActivityDAO extends SQLite3
 
         while ($row = $results->fetchArray())
         {
-            $data[] = ['name' => $row['name'], 'plays' => $row['plays']];
+            $data[] = ['artist' => $row['name'], 'plays' => $row['plays']];
         }
 
         return $data;

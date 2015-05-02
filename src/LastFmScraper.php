@@ -13,13 +13,14 @@ class LastFmScraper
         $listeningActivityDao = new ListeningActivityDAO;
         $artistDao            = new ArtistDAO;
 
-        var_dump( $artistDao->artistExists(new Artist('Biffy Clyro')) );
+        foreach ($resource->getWeeklyArtistChart() as $band) 
+        {   
+            if ( ! $artist = $artistDao->getByName($band->name))
+            {
+                $artist = $artistDao->add(new Artist($band->name));
+            }
 
-        exit;
-        $artists = $artistDao->getArtists();
-
-        foreach ($artists as $artist) {
-            print $artist->name()."\n";
+            $listeningActivityDao->add($artist, $band->playcount);
         }
     }
 }

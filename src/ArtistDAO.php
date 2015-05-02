@@ -11,31 +11,35 @@ class ArtistDAO extends SQLite3
         $this->open(DATABASE_FILE);
     }
 
-    public function getArtists()
+    public function getAll()
     {
-        $results = $this->query('
-            SELECT * 
-            FROM artist
-        ');
-
+        $results = $this->query('SELECT * FROM artist');
         $artists = [];
 
         while ($row = $results->fetchArray()) 
         {
-            $artists[] = new Artist($row['name'], 0, new \DateTime($row['date_added']));
+            $artists[] = $this->makeArtistWithRow($row);
         }
 
         return $artists;
     }
 
-    public function addArtist(Artist $artist) 
+    public function add(Artist $artist) 
     {
         $this->query("INSERT INTO artist (name) VALUES ('{$artist->name()}')");
+        
+        return $this->getByName($artist->name());
     }
 
-    public function artistExists(Artist $artist)
+    public function getByName($name)
     {
-        return $this->query("SELECT * FROM artist WHERE name = '{$artist->name()}'")->fetchArray() !== false;
+        $row = $this->query("SELECT * FROM artist WHERE name = '{$name}'")->fetchArray();
+        return $row ? $this->makeArtistWithRow($row) : false;
+    }
+
+    private function makeArtistWithRow($row) 
+    {
+        return new Artist($row['name'], new \DateTime($row['date_added']), $row['id']);
     }
 
 }

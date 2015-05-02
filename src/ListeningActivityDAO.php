@@ -11,4 +11,9 @@ class ListeningActivityDAO extends SQLite3
 		$this->open(DATABASE_FILE);
 	}
 
+	public function add(Artist $artist, $playCount) 
+	{
+		$this->query("INSERT INTO weekly_listening_activity (artist_id, plays) VALUES ('{$artist->id()}', '{$playCount}')");
+	}
+
 }

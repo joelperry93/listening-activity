@@ -4,14 +4,14 @@ namespace App\Model;
 class Artist 
 {
     protected $name;
-    protected $playCount; 
-    protected $created;
+    protected $created; 
+    protected $id;
 
-    public function __construct($name, $playCount = 0, \DateTime $created = null) 
+    public function __construct($name, \DateTime $created = null, $id = null) 
     {
         $this->name      = $name;
-        $this->playCount = $playCount;
         $this->created   = $created;
+        $this->id        = $id;
     }
 
     public function name() 
@@ -19,9 +19,9 @@ class Artist
         return $this->name;
     }
 
-    public function playCount()
+    public function id() 
     {
-        return $this->playCount;
+        return $this->id;
     }
 
 }

@@ -5,6 +5,11 @@ function sendJSON($data) {
     print json_encode($data);
 }
 
+
+$app->get('/', function () {
+    echo file_get_contents(ROOT_PATH.'public/api-docs.html');
+});
+
 $app->get('/all', function () use ($activityDao) {
     sendJSON($activityDao->getAll());
 });

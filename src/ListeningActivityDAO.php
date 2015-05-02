@@ -27,14 +27,11 @@ class ListeningActivityDAO extends SQLite3
 
     public function getAll()
     {
-        $data    = [];
-        $results = $this->query('SELECT a.name, wla.plays, wla.date
-                            FROM weekly_listening_activity wla
-                            JOIN artist a on wla.artist_id = a.id');
+        $data = [];
 
-        while ($row = $results->fetchArray())
+        foreach ($this->getDates() as $date)
         {
-            $data[] = ['name' => $row['name'], 'plays' => $row['plays']];
+            $data[$date] = $this->getByDate($date);
         }
 
         return $data;

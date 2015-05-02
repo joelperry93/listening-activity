@@ -25,7 +25,7 @@ class LastFmScraper
                 $artist = $artistDao->add(new Artist($entry->name));
             }
 
-            $listeningActivityDao->add($artist, $entry->playcount);
+            $listeningActivityDao->add($artist, $entry->playcount, new \DateTime);
         }
     }
 }

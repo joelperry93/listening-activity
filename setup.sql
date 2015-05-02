@@ -7,7 +7,7 @@ CREATE TABLE artist(
 CREATE TABLE weekly_listening_activity( 
     artist_id INTEGER NOT NULL,  
     plays INTEGER NOT NULL, 
-    date DATE DEFAULT CURRENT_TIMESTAMP, 
+    date DATE, 
 
     FOREIGN KEY (artist_id) REFERENCES Artist(id)
 );

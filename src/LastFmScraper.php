@@ -13,14 +13,19 @@ class LastFmScraper
         $listeningActivityDao = new ListeningActivityDAO;
         $artistDao            = new ArtistDAO;
 
-        foreach ($resource->getWeeklyArtistChart() as $band) 
+        if ($listeningActivityDao->hasRunToday()) 
+        {
+            exit;
+        }
+
+        foreach ($resource->getWeeklyArtistChart() as $entry) 
         {   
-            if ( ! $artist = $artistDao->getByName($band->name))
+            if ( ! $artist = $artistDao->getByName($entry->name))
             {
-                $artist = $artistDao->add(new Artist($band->name));
+                $artist = $artistDao->add(new Artist($entry->name));
             }
 
-            $listeningActivityDao->add($artist, $band->playcount);
+            $listeningActivityDao->add($artist, $entry->playcount);
         }
     }
 }

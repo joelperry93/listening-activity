@@ -47,4 +47,17 @@ class ArtistDAO extends SQLite3
         return new Artist($row['name'], new \DateTime($row['date_added']), $row['id']);
     }
 
+    public function getNames()
+    {
+        $results = $this->query('SELECT name FROM artist ORDER BY name');
+        $artists = [];
+        
+        while ($result = $results->fetchArray())
+        {
+            $artists[] = $result['name'];
+        }
+        
+        return $artists;
+    }
+
 }

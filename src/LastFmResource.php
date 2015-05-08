@@ -1,7 +1,9 @@
 <?php 
 namespace App\Resource;
 
-class LastFmResource 
+use App\Resource\ResourceInterface;
+
+class LastFmResource implements ResourceInterface
 {
     protected $username;
     protected $apiKey;

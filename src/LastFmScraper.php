@@ -3,12 +3,12 @@ namespace App\Scraper;
 
 use App\DAO\ArtistDAO;
 use App\DAO\ListeningActivityDAO;
-use App\Resource\LastFmResource;
+use App\Resource\ResourceInterface;
 use App\Model\Artist;
 
-class LastFmScraper 
+class LastFmScraper implements ScraperInterface
 { 
-    public function scrape(LastFmResource $resource) 
+    public function scrape(ResourceInterface $resource) 
     {
         $listeningActivityDao = new ListeningActivityDAO;
         $artistDao            = new ArtistDAO;

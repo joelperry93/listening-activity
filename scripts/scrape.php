@@ -1,8 +1,8 @@
 <?php 
-namespace App\Scripts;
+namespace LA\Scripts;
 
-use App\Scraper\LastFmScraper;
-use App\Resource\LastFmResource;
+use LA\Scraper\LastFmScraper;
+use LA\Resource\LastFmResource;
 
 require dirname(__FILE__).'/../bootstrap.php';
 

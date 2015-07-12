@@ -1,10 +1,10 @@
 <?php
-namespace App\Scraper;
+namespace LA\Scraper;
 
-use App\DAO\ArtistDAO;
-use App\DAO\ListeningActivityDAO;
-use App\Resource\ResourceInterface;
-use App\Model\Artist;
+use LA\DAO\ArtistDAO;
+use LA\DAO\ListeningActivityDAO;
+use LA\Resource\ResourceInterface;
+use LA\Model\Artist;
 
 class LastFmScraper implements ScraperInterface
 { 

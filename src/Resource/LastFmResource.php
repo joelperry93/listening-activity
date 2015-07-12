@@ -1,7 +1,7 @@
 <?php 
-namespace App\Resource;
+namespace LA\Resource;
 
-use App\Resource\ResourceInterface;
+use LA\Resource\ResourceInterface;
 
 class LastFmResource implements ResourceInterface
 {

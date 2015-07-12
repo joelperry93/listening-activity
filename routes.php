@@ -1,6 +1,11 @@
 <?php 
-$activityDao = new App\DAO\ListeningActivityDAO;
-$artistDao   = new App\DAO\ArtistDAO;
+namespace LA;
+
+use LA\DAO\ListeningActivityDAO;
+use LA\DAO\ArtistDAO;
+
+$activityDao = new ListeningActivityDAO;
+$artistDao   = new ArtistDAO;
 
 function sendJSON($data) {
     if (isset($_GET['callback'])) {
@@ -9,7 +14,6 @@ function sendJSON($data) {
         print json_encode($data);
     }
 }
-
 
 $app->get('/', function () {
     echo file_get_contents(ROOT_PATH.'public/api-docs.html');

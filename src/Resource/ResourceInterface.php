@@ -1,4 +1,4 @@
 <?php
-namespace App\Resource;
+namespace LA\Resource;
 
 interface ResourceInterface {}

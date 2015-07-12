@@ -1,7 +1,7 @@
 <?php 
-namespace App\Scraper;
+namespace LA\Scraper;
 
-use App\Resource\ResourceInterface;
+use LA\Resource\ResourceInterface;
 
 interface ScraperInterface 
 {

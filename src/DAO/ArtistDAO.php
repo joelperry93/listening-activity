@@ -1,8 +1,8 @@
 <?php
-namespace App\DAO;
+namespace LA\DAO;
 
 use SQLite3;
-use App\Model\Artist;
+use LA\Model\Artist;
 
 class ArtistDAO extends SQLite3 
 {
